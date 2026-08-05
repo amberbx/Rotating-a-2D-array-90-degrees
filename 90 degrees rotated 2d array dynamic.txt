@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+void input(int **p, int row, int col);
+void ninety_degree(int **p, int row, int col);
+int main()
+{
+    int sum = 0, row, col;
+    printf("Enter number of rows: ");
+    scanf("%d", &row);
+    printf("Enter number of columns: ");
+    scanf("%d", &col);
+    int **p = malloc(row * sizeof(int *));
+    for (int i = 0; i < row; i++)
+    {
+        p[i] = malloc(col * sizeof(int));
+    }
+
+    input(p, row, col);
+    ninety_degree(p, row, col);
+}
+void input(int **p, int row, int col)
+{
+    printf("Enter %d elements: ", row * col);
+    for (int i = 0; i < row; i++)
+    {
+        for (int x = 0; x < col; x++)
+        {
+            scanf("%d", &p[i][x]);
+        }
+    }
+}
+void ninety_degree(int **p, int row, int col)
+{
+    int sum = 0;
+    printf("Original:\n");
+    for (int i = 0; i < row; i++)
+    {
+        for (int x = 0; x < col; x++)
+        {
+            printf("%d", p[i][x]);
+        }
+        printf("\n");
+    }
+    printf("90 degrees shifted:\n");
+    for (int i = 0; i<col; i++)
+    {
+        for (int x = row - 1; x >= 0; x--)
+        {
+            printf("%d", p[x][i]);
+        }
+        printf("\n");
+    }
+}
